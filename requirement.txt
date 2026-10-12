@@ -1,7 +1,9 @@
 fastapi
+openai
 mysql
 pydantic
 pydantic-settings
 pymysql
+python-multipart
 sqlalchemy
 uvicorn
