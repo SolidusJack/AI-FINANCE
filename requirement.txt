@@ -1,5 +1,7 @@
 fastapi
 mysql
 pydantic
+pydantic-settings
 pymysql
 sqlalchemy
+uvicorn
