@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09090b" />
+    <title>Ledger — Finanças por voz</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/">ledger<span>.</span></a>
+        <label class="key-field" for="api-key">
+          <span>Chave da API</span>
+          <input id="api-key" type="password" autocomplete="off" placeholder="Cole sua chave" />
+          <button id="save-api-key" type="button">Salvar</button>
+        </label>
+      </header>
+
+      <section class="hero">
+        <div class="intro">
+          <p class="eyebrow">Seu dinheiro, registrado sem esforço</p>
+          <h1>Acompanhe seus gastos <em>com simplicidade.</em></h1>
+          <p>Cadastre uma compra digitando ou falando. O Ledger organiza tudo e mostra onde seu dinheiro está indo.</p>
+        </div>
+
+        <div class="panel">
+          <nav class="tabs" aria-label="Funcionalidades">
+            <button class="tab is-active" data-tab="manual">Novo gasto</button>
+            <button class="tab" data-tab="voice">Por voz</button>
+            <button class="tab" data-tab="totals">Totais</button>
+          </nav>
+
+          <section class="tab-content is-active" data-panel="manual">
+            <h2>Adicionar gasto</h2>
+            <form id="manual-form">
+              <label for="title">O que você comprou?</label>
+              <input id="title" name="title" maxlength="120" required placeholder="Ex.: Almoço no iFood" />
+              <label for="amount">Valor (R$)</label>
+              <input id="amount" name="amount" type="number" min="0.01" max="99999999.99" step="0.01" required placeholder="0,00" />
+              <label for="category">Categoria</label>
+              <select id="category" name="category" required>
+                <option value="">Selecione uma categoria</option>
+                <option>Alimentação</option><option>Transporte</option><option>Moradia</option>
+                <option>Saúde</option><option>Educação</option><option>Lazer</option>
+                <option>Jogos</option><option>Contas</option><option>Compras</option>
+                <option>Serviços</option><option>Outros</option>
+              </select>
+              <button class="primary" type="submit">Salvar gasto</button>
+            </form>
+          </section>
+
+          <section class="tab-content" data-panel="voice">
+            <h2>Registrar por voz</h2>
+            <p class="muted">Diga algo como: “50 reais em iFood” ou “30 reais de gift card Xbox”.</p>
+            <button id="record-button" class="record" type="button" aria-label="Começar gravação">🎙</button>
+            <p id="hint" class="hint">Clique para começar a gravar</p>
+          </section>
+
+          <section class="tab-content" data-panel="totals">
+            <div class="totals-heading"><div><h2>Total gasto</h2><p class="muted">Distribuição por categoria</p></div><button id="refresh-totals" class="secondary">Atualizar</button></div>
+            <strong id="grand-total" class="grand-total">R$ 0,00</strong>
+            <div id="category-totals" class="category-totals"><p class="muted">Carregando...</p></div>
+            <button id="speak-total" class="secondary" type="button">🔊 Ouvir total</button>
+          </section>
+
+          <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+      <footer>Seus dados ficam no seu banco de dados · API REST</footer>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
